@@ -1,0 +1,3 @@
+@echo off
+echo Iniciando Sistema Socket...
+javaw -cp bin quiosque.socket.PainelControleSocket
