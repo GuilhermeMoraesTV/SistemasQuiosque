@@ -12,6 +12,11 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManagerFactory;
+import quiosque.db.DatabaseManager;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 
 public class QuiosqueJanelaRMI extends JFrame {
@@ -168,11 +173,12 @@ public class QuiosqueJanelaRMI extends JFrame {
             protected void done() {
                 try {
                     List<Produto> cardapio = get();
+
                     for (Produto p : cardapio) {
                         cardapioComboBox.addItem(p);
                     }
-                } catch (Exception e) {
-                    JOptionPane.showMessageDialog(QuiosqueJanelaRMI.this, "Nao foi possivel carregar o cardapio do servidor seguro.", "Erro de Conexao", JOptionPane.ERROR_MESSAGE);
+                } catch (Throwable t) {
+                                        JOptionPane.showMessageDialog(QuiosqueJanelaRMI.this, "Nao foi possivel carregar o cardapio do servidor seguro.", "Erro de Conexao", JOptionPane.ERROR_MESSAGE);
                     dispose();
                 }
             }
